@@ -44,7 +44,7 @@ class App extends Component {
   render() {
     const { displayWidth } = this.state;
     const mobile = (displayWidth <= 500);
-    const middle_of_map = [144.928, -37.643];
+    // const middle_of_map = [144.928, -37.643];
     if(mobile) {
       return (
         <div className="App">
