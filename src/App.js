@@ -56,12 +56,12 @@ class App extends Component {
           </header>
           <Flex className='Mobile' p={2}>
             <Box className='Map' vertical-align='center' px={2} w={3/3}>
-            <Map className='MapView' view={{center: {middle_of_map}, zoom: 4}} onClick={showPopup}>
+            <Map className='MapView' view={{center: [144.928, -37.643], zoom: 4}} onClick={showPopup}>
               <Layers>
                 <layer.Tile />
               </Layers>
             </Map>
-              <Box className='ListButton'><h1>Button</h1></Box>
+            <Box className='ListButton'><h1>Button</h1></Box>
             </Box>
           </Flex>
         </div>
