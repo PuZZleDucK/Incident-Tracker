@@ -37,7 +37,7 @@ Below is information and notes I've used to drive development of the project and
 - [x] Document approach
 - [x] Review wave digital source code
 - [x] Add contrib/license/coc/contact-wiki/templates
-- [ ] Setup project infrastructure and pipelines
+- [x] Setup project infrastructure and pipelines
 - [ ] Example data
 - [ ] Sketch app design
 - [ ] Prototype layouts
