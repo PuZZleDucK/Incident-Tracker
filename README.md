@@ -7,30 +7,50 @@ Displays incident data on a map
 - Deployment: https://puzzleduck.github.io/Incident-Tracker/
 - CI/CD: https://semaphoreci.com/puzzleduck/incident-tracker
 
-# The Technology
+
+### The Technology
 
 Uses the React JS library
 Responsive layout
 GitHub Pages for hosting
+No storage requirements... no back end required
+Tests: Jasmine & Karma
+Maps: open layers and turf
 
 
-# The Plan
+### Want to find out more
+
+Link to templated issue
+Link to templated pr
+Contrib: .md link
+Contact: Wiki link
+
+
+# Behind the scenes
+
+Below is information and notes I've used to drive development of the project and would not normally be included with a release. However it is included here for your consideration in the application process and to demonstrate how the project was developed.
+
+
+### The Plan
 
 - [x] Analyse problem description
 - [x] Document approach
-- [ ] Review wave digital source code
-- [ ] Add contrib/license/coc/contact-wiki
+- [x] Review wave digital source code
+- [x] Add contrib/license/coc/contact-wiki/templates
 - [ ] Setup project infrastructure and pipelines
 - [ ] Sketch app design
 - [ ] Prototype layouts
 - [ ] Input/Parse data
 - [ ] Display live data
+- [ ] Blog
 - [ ] Develop additional functionality (optional)
+- [ ] live user location (compass mode)
+- [ ] Cluster map (optional)
 - [ ] Deploy to puzzleduck.org (optional)
 - [ ] Review submission
 
 
-# The Specification
+### The Specification
 
 - [ ] local traffic authority needs a solution to display traffic incidents on a map.
 - [ ] simple browser based interface required to display incident locations and information each about each incident.
@@ -64,3 +84,27 @@ GitHub Pages for hosting
 - [ ] indicate approximately how long you spent on it
 - [ ] You are not expected to apply any specific styling but please apply some basic CSS to ensure the interface elements are pleasantly presented.
 - [ ] You may use any frontend framework & build tool or just plain JS.
+
+
+### Review of Wave Digital on GitHub
+
+Notes taken reviewing Wave Digital GitHub repos/blog
+
+- 14 repos, every repo is forked from somewhere
+- top languages: Ruby Objective-C JavaScript Java
+- gh issues
+- iOS and Android libs/utils
+- cluster map
+- Ruby
+- REST
+- branch push style
+- immersive
+- autogen docs
+- isolated components (core/data/map/demo)
+- open layers and turf
+- google analytics
+- twitter lib
+- sparse docs
+- strict js
+- spec.js (Jasmine & Karma)
+- blogs
