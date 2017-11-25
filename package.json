@@ -4,9 +4,14 @@
   "private": true,
   "homepage": "https://puzzleduck.github.io/Incident-Tracker/",
   "dependencies": {
+    "openlayers": "^4.5.0",
     "react": "^16.0.0-beta.5",
+    "react-dom": "^16.1.1",
     "react-layout-components": "^3.0.6",
-    "react-scripts": "1.0.17"
+    "react-openlayers": "^0.2.1",
+    "react-scripts": "1.0.17",
+    "reflexbox": "^3.0.0-0",
+    "turf": "^3.0.14"
   },
   "scripts": {
     "start": "react-scripts start",
