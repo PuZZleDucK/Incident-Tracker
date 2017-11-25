@@ -14,7 +14,7 @@ Uses the React JS library
 Responsive layout
 GitHub Pages for hosting
 No storage requirements... no back end required
-Tests: Jasmine & Karma
+Tests: Jasmine & Karma (Jest?)
 Maps: open layers and turf
 
 
@@ -38,12 +38,14 @@ Below is information and notes I've used to drive development of the project and
 - [x] Review wave digital source code
 - [x] Add contrib/license/coc/contact-wiki/templates
 - [ ] Setup project infrastructure and pipelines
+- [ ] Example data
 - [ ] Sketch app design
 - [ ] Prototype layouts
 - [ ] Input/Parse data
 - [ ] Display live data
 - [ ] Blog
 - [ ] Develop additional functionality (optional)
+- [ ] ssl (optional)
 - [ ] live user location (compass mode)
 - [ ] Cluster map (optional)
 - [ ] Deploy to puzzleduck.org (optional)

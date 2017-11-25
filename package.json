@@ -1,0 +1,19 @@
+{
+  "name": "incident-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "jasmine",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "jasmine": "^2.8.0"
+  }
+}
