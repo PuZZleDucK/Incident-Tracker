@@ -4,7 +4,7 @@
 Displays incident data on a map
 
 - Source: https://github.com/PuZZleDucK/Incident-Tracker.git
-- Deployment:
+- Deployment: https://puzzleduck.github.io/Incident-Tracker/
 - CI/CD: https://semaphoreci.com/puzzleduck/incident-tracker
 
 # The Technology
@@ -16,15 +16,17 @@ GitHub Pages for hosting
 
 # The Plan
 
-- [ ] Analyse problem description
-- [ ] Document approach
+- [x] Analyse problem description
+- [x] Document approach
 - [ ] Review wave digital source code
 - [ ] Add contrib/license/coc/contact-wiki
 - [ ] Setup project infrastructure and pipelines
+- [ ] Sketch app design
 - [ ] Prototype layouts
 - [ ] Input/Parse data
 - [ ] Display live data
-- [ ] Develop additional functionality
+- [ ] Develop additional functionality (optional)
+- [ ] Deploy to puzzleduck.org (optional)
 - [ ] Review submission
 
 
