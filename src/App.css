@@ -1,21 +1,68 @@
 .App {
   text-align: center;
+  height: 90% !important;
+}
+
+.Desktop {
+  height: 90% !important;
+}
+
+.Mobile {
+  height: 90% !important;
+}
+
+.ListButton {
+  background-color: #00F;
+  position: absolute;
+  left: 1.5em;
+  top: 7em;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  animation: App-logo-spin infinite 5s linear;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+  background-color: #000;
+  height: 80px;
+  padding: 5px;
+  color: yellow;
+}
+
+html, body {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+#root {
+  height: 100% !important;
+}
+
+.List {
+  background-color: #F00;
+  height: 100% !important;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Map {
+  background-color: #0F0;
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 1em;
+  padding: 0em;
+  margin: 0em;
 }
 
 .App-intro {

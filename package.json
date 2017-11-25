@@ -4,10 +4,9 @@
   "private": true,
   "homepage": "https://puzzleduck.github.io/Incident-Tracker/",
   "dependencies": {
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "react-scripts": "1.0.17",
-    "npm": "^3.0.0"
+    "react": "^16.0.0-beta.5",
+    "react-layout-components": "^3.0.6",
+    "react-scripts": "1.0.17"
   },
   "scripts": {
     "start": "react-scripts start",

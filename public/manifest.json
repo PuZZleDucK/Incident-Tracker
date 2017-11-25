@@ -1,10 +1,14 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Incident Tracker",
+  "name": "Incident Tracker for Wave Digital",
+  "description": "Displays incidents from victraffic-api",
+  "repository": "https://github.com/PuZZleDucK/Incident-Tracker",
+  "license": "MIT",
+  "README": "README.md",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "16x16 32x32 48x48",
+      "sizes": "16x16 32x32 48x48 144x144",
       "type": "image/png"
     }
   ],
