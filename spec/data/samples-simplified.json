@@ -1,0 +1,40 @@
+{
+  "incidents": [
+    {
+      "lat": "-38.070554",
+      "long": "145.181657",
+      "alert_type": "tow_allocation",
+      "title": "Eastlink -, Carrum Downs",
+      "description": "Tow allocation"
+    },
+    {
+      "lat": "-37.6437899985",
+      "long": "144.9289995969",
+      "alert_type": "alert",
+      "title": "Pascoe Vale Road ",
+      "description": "NBN works near Shankland Blvd. Left lane closed northbound. \n\nSpeed limit set to 40km/h. \n\nWorks expected to be completed by 3:30pm. "
+    },
+    {
+      "lat": "-37.4246674899",
+      "long": "147.9536625951",
+      "alert_type": "emergency",
+      "title": "Cutts Creek Road ",
+      "description": "Cutts Creek Road closed at Holstons as advised by VicEmergency"
+    },
+    {
+      "lat": "-37.8078354176",
+      "long": "144.9036602069",
+      "alert_type": "roadworks",
+      "title": "Moreland Street",
+      "description": "other daily works from 10:00 PM to 06:00 AM. Roadworks speed limit 40 km/h. Traffic delay 0 to 5 min."
+    },
+    {
+      "lat": "-37.8239750327",
+      "long": "144.9836907658",
+      "alert_type": "event",
+      "title": "Olympic Boulevard",
+      "description": "Road closures in place before and after events at the sporting precinct which includes AAMI Park, Rod Laver Arena, Eastern Car Park and Hisense Arena. \n\nTraffic delay between 6 to 10 minutes."
+    },
+  ],
+  "last_modified": "Sat, 25 Nov 2017 10:14:05 GMT"
+}

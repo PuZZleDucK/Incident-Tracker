@@ -30,6 +30,9 @@ Contact: Wiki link
 
 Below is information and notes I've used to drive development of the project and would not normally be included with a release. However it is included here for your consideration in the application process and to demonstrate how the project was developed.
 
+### Notes
+
+- Known values for incident_type: tow_allocation, alert, emergency, roadworks and event (may be open ended?)
 
 ### The Plan
 
@@ -38,11 +41,11 @@ Below is information and notes I've used to drive development of the project and
 - [x] Review wave digital source code
 - [x] Add contrib/license/coc/contact-wiki/templates
 - [x] Setup project infrastructure and pipelines
-- [ ] Example data
-- [ ] Sketch app design
+- [x] Example data
+- [x] Sketch app design
 - [ ] Prototype layouts
 - [ ] Input/Parse data
-- [ ] Display live data
+- [ ] Display live data (check "last_modified" in json)
 - [ ] Blog
 - [ ] Develop additional functionality (optional)
 - [ ] ssl (optional)
