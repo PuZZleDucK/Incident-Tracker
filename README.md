@@ -5,7 +5,7 @@ Displays incident data on a map
 
 - Source: https://github.com/PuZZleDucK/Incident-Tracker.git
 - Deployment: https://puzzleduck.github.io/Incident-Tracker/
-- CI/CD: Travis
+- CI/CD: [![Build Status](https://travis-ci.org/PuZZleDucK/Incident-Tracker.svg?branch=master)](https://travis-ci.org/PuZZleDucK/Incident-Tracker)
 
 
 ### The Technology
