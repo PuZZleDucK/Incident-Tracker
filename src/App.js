@@ -5,6 +5,7 @@ import logo from './logo.svg';
 import './App.css';
 const { compose, withStateHandlers } = require("recompose");
 const FaAnchor = require("react-icons/lib/fa/anchor");
+const FaMenu = require("react-icons/lib/fa/bars");
 const {
   withScriptjs,
   withGoogleMap,
@@ -99,7 +100,7 @@ class App extends Component {
               containerElement={<div style={{ height: `100%` }} />}
               mapElement={<div style={{ height: `100%` }} />}
             />
-            <Box className='ListButton'><h1>Button</h1></Box>
+            <Box className='ListButton'><FaMenu size={50} /></Box>
             </Box>
           </Flex>
         </div>

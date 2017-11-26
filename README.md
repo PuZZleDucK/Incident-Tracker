@@ -44,14 +44,16 @@ Below is information and notes I've used to drive development of the project and
 - [x] Example data
 - [x] Sketch app design
 - [x] Prototype layouts
-- [ ] Input/Parse data
+- [x] Input/Parse data
+- [ ] Display markers
+- [ ] Display popoup data
 - [ ] Display live data (check "last_modified" in json)
-- [ ] Blog
 - [ ] Develop additional functionality (optional)
-- [ ] ssl (optional)
+- [x] ssl (optional)
 - [ ] live user location (compass mode)
 - [ ] Cluster map (optional)
 - [ ] Deploy to puzzleduck.org (optional)
+- [ ] Blog
 - [ ] Review submission
 
 
@@ -59,11 +61,11 @@ Below is information and notes I've used to drive development of the project and
 
 - [ ] local traffic authority needs a solution to display traffic incidents on a map.
 - [ ] simple browser based interface required to display incident locations and information each about each incident.
-- [ ] incidents are published in a JSON feed which contains data about the incident type, description, location details etc.
+- [x] incidents are published in a JSON feed which contains data about the incident type, description, location details etc.
 - [ ] live data
 - [ ] usually contains 300-400 items.(maximum number of items your solution needs to support).
 
-- [ ] https://victraffic-api.wd.com.au/api/v3/incidents
+- [x] https://victraffic-api.wd.com.au/api/v3/incidents
 - [ ] Build a small single page JS application that has the following features:
 
 - [ ] Displays the incidents on an interactive map
@@ -74,21 +76,21 @@ Below is information and notes I've used to drive development of the project and
 - [ ] The following incident details are required to be displayed: alert_type, title, description
 - [ ] This information should be presented in a pop-up element that can be dismissed
 
-- [ ] Displays incidents in a list
+- [x] Displays incidents in a list
 - [ ] As the user pans and zooms the map interface the incident list needs to be updated to show only the incidents currently visible on the map
-- [ ] Each list element needs to display the alert_type and title of the incident.
+- [x] Each list element needs to display the alert_type and title of the incident.
 
 - [ ] UI Requirements
-- [ ] implement a responsive layout to support both desktop and mobile devices.
-- [ ] When in desktop mode the list and map should be both on-screen
+- [x] implement a responsive layout to support both desktop and mobile devices.
+- [x] When in desktop mode the list and map should be both on-screen
 - [ ] When in mobile mode the map should be on-screen and the list is accessible by a button or similar element.
 - [ ] When in mobile mode the button to access the list should display the number of list elements in the button label
 
 - [ ] We require the application code and any build instructions
-- [ ] There are no time limits on the test
+- [x] There are no time limits on the test
 - [ ] indicate approximately how long you spent on it
 - [ ] You are not expected to apply any specific styling but please apply some basic CSS to ensure the interface elements are pleasantly presented.
-- [ ] You may use any frontend framework & build tool or just plain JS.
+- [x] You may use any frontend framework & build tool or just plain JS.
 
 
 ### Review of Wave Digital on GitHub
