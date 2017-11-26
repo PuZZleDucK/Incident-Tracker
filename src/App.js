@@ -15,6 +15,8 @@ const {
   InfoWindow,
 } = require("react-google-maps");
 
+function ListButtonClicked(event){}
+
 const MapWithAMarkerClusterer = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyChLjO94fJ0jizj33jXsoyOU2cyV4j3FWY&v=3.exp&libraries=geometry,drawing,places",
@@ -47,12 +49,12 @@ const MapWithAMarkerClusterer = compose(
       onClick={props.onMarkerClustererClick}
       averageCenter
       enableRetinaIcons
-      gridSize={1}
+      gridSize={30}
     >
       {props.incident_data.map(marker => (
         <Marker
           key={marker.description}
-          position={{ lat: parseInt(marker.lat, 10), lng: parseInt(marker.long, 10) }}
+          position={{ lat: parseFloat(marker.lat, 10), lng: parseFloat(marker.long, 10) }}
           onClick={props.onToggleOpen}
         >
 
@@ -149,7 +151,7 @@ class App extends Component {
           <Flex className='Mobile' p={2}>
             <Box className='Map' vertical-align='center' px={2} w={3/3}>
                 <MapWithAMarkerClusterer incident_data={incident_data} />
-            <Box className='ListButton'><FaMenu size={50} /></Box>
+            <Box className='ListButton' onClick={ListButtonClicked} >hamburger<FaMenu size={50} /></Box>
             </Box>
           </Flex>
         </div>
