@@ -9,8 +9,8 @@ class ListEntry extends React.Component {
   render() {
     return (
       <li key={this.state.key} className="incident">
-        <h1>Type: {this.state.type}</h1>
-        <h1>Title: {this.state.title}</h1>
+        <h5>Type: {this.state.type}</h5>
+        <h6>Title: {this.state.title}</h6>
       </li>
     );
   }
