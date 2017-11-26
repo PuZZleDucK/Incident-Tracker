@@ -4,6 +4,10 @@
   "private": true,
   "homepage": "https://puzzleduck.github.io/Incident-Tracker/",
   "dependencies": {
+    "axios": "^0.17.1",
+    "axios-jsonp": "^1.0.1",
+    "cors": "^2.8.4",
+    "jsonp": "^0.2.1",
     "openlayers": "^4.5.0",
     "react": "^16.0.0-beta.5",
     "react-dom": "^16.1.1",

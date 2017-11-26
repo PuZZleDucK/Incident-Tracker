@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Flex, Box } from 'reflexbox';
 import logo from './logo.svg';
 import './App.css';
+let axios = require('axios');
+let jsonpAdapter = require('axios-jsonp');
 const { compose, withStateHandlers } = require("recompose");
 const FaAnchor = require("react-icons/lib/fa/anchor");
 const {
@@ -40,30 +42,100 @@ const MapWithAMakredInfoWindow = compose(
   </GoogleMap>
 );
 
-// function showPopup(evt) {
-//   this.overlayComp.overlay.setPosition(evt.coordinate);
-//   var lonlat = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
-//
-//   this.popupComp.setContents(
-//     `<p>You clicked here:</p><code> ${lonlat[0]}, ${lonlat[1]}</code>`
-//   );
-//   this.popupComp.show();
-// }
-
-// var iconFeature = new ol.Feature(new ol.geom.Point([-37.643, 144.928]));
-// var source = new ol.source.Vector({features: [iconFeature]});
-// var marker = new custom.style.MarkerStyle(
-//   'https://openlayers.org/en/v4.0.1/examples/data/icon.png'
-// );
-
 class App extends Component {
   constructor() {
     super();
-    this.state = { displayWidth: window.innerWidth };
+    this.state = { displayWidth: window.innerWidth, incident_data: [{"alert_type": "tow_allocation", "title": "Eastlink -, Carrum Downs"}] };
   }
 
   componentWillMount() {
     window.addEventListener('resize', this.handleWindowSizeChange);
+    console.log("--- will mount");
+    var th = this;
+    // this.serverRequest =
+    //   axios.get("https://victraffic-api.wd.com.au/api/v3/incidents")
+    //     .then(function(result) {
+    //       console.log("--- input");
+    //       th.setState({
+    //         incident_data: result.data.incidents
+    //       });
+    //     })
+    // jsonp('https://victraffic-api.wd.com.au/api/v3/incidents', null, function (err, data) {
+    //   if (err) {
+    //     console.error(err.message);
+    //   } else {
+    //     console.log(data);
+    //   }
+    // });
+    // axios({
+    //     url: 'https://victraffic-api.wd.com.au/api/v3/incidents',
+    //     adapter: jsonpAdapter
+    // }).then((res) => {
+    //
+    // });
+
+    // axios.get({
+    //   url:'victraffic-api.wd.com.au/api/v3/incidents/',
+    //   responseType:'text/plain',
+    // })
+    // .then(function (response) {
+    //   console.log("--- response");
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log("--- error");
+    //   console.log(error);
+    // });
+    // function createCORSRequest(method, url) {
+    //   var xhr = new XMLHttpRequest();
+    //   if ("withCredentials" in xhr) {
+    //     xhr.open(method, url, true);
+    //   } else if (typeof XDomainRequest != "undefined") {
+    //     xhr = new XDomainRequest();
+    //     xhr.open(method, url);
+    //   } else {
+    //     xhr = null;
+    //   }
+    //   return xhr;
+    // }
+    //
+    // var xhr = createCORSRequest('GET', 'https://victraffic-api.wd.com.au/api/v3/incidents');
+    // console.log("--- try CORS");
+    // if (!xhr) {
+    //   console.log("--- no CORS");
+    //   throw new Error('CORS not supported');
+    // }
+    // xhr.onload = function() {
+    //  var responseText = xhr.responseText;
+    //  console.log("--- response");
+    //  console.log(responseText);
+    //  // process the response.
+    // };
+    //
+    // xhr.onerror = function() {
+    //   console.log("--- error");
+    //   console.log('There was an error!');
+    // };
+    // xhr.withCredentials = true;
+    // xhr.send();
+    var request;
+    request = new XMLHttpRequest();
+    request.responseType = "text/plain"
+    request.open('GET', "https://crossorigin.me/https://victraffic-api.wd.com.au/api/v3/incidents", true);
+    request.onload = function() {
+     var responseText = request.responseText;
+     console.log("--- response");
+           th.setState({
+             incident_data: JSON.parse(responseText).incidents
+           });
+    };
+
+    request.onerror = function() {
+      console.log("--- error");
+      console.log('There was an error!');
+    };
+    request.send();
+
   }
 
   componentWillUnmount() {
@@ -116,6 +188,14 @@ class App extends Component {
                 <li><h2>Incident 1</h2></li>
                 <li><h2>Incident 2</h2></li>
                 <li><h2>Incident 3</h2></li>
+                  {/* Don't have an ID to use for the key, URL work ok? */}
+                  {this.state.incident_data.map(function(incident) {
+                    return (
+                      <li key={incident.title} className="incident">
+                          <h4>{incident.alert_type} - {incident.title}</h4>
+                      </li>
+                    );
+                  })}
               </ul>
             </Box>
             <Box className='Map' px={2} w={2/3}>
