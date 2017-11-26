@@ -19,7 +19,6 @@ const {
   InfoWindow,
 } = require("react-google-maps");
 
-let refs = {};
 const MapWithAMarkerClusterer = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyChLjO94fJ0jizj33jXsoyOU2cyV4j3FWY&v=3.exp&libraries=geometry,drawing,places",
