@@ -1,21 +1,39 @@
 
 import React, { Component } from 'react';
-import * as ol from 'openlayers';
 import { Flex, Box } from 'reflexbox';
-import { layer, Map, Layers } from "react-openlayers";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, FusionTablesLayer } from "react-google-maps"
 
 import logo from './logo.svg';
 import './App.css';
 
-function showPopup(evt) {
-  this.overlayComp.overlay.setPosition(evt.coordinate);
-  var lonlat = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
+const MyMapComponent = withScriptjs(withGoogleMap((props) =>
+  <GoogleMap
+    defaultZoom={9}
+    defaultCenter={{ lat: -37.643, lng: 144.928 }}
+  >
+  <FusionTablesLayer
+    url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"
+    options={{
+      query: {
+        select: `Geocodable address`,
+        from: `1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg`
+      }
+    }}
+  />
+    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
+    {props.isMarkerShown && <Marker position={{ lat: -37.643, lng: 144.928 }} />}
+  </GoogleMap>
+))
 
-  this.popupComp.setContents(
-    `<p>You clicked here:</p><code> ${lonlat[0]}, ${lonlat[1]}</code>`
-  );
-  this.popupComp.show();
-}
+// function showPopup(evt) {
+//   this.overlayComp.overlay.setPosition(evt.coordinate);
+//   var lonlat = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
+//
+//   this.popupComp.setContents(
+//     `<p>You clicked here:</p><code> ${lonlat[0]}, ${lonlat[1]}</code>`
+//   );
+//   this.popupComp.show();
+// }
 
 // var iconFeature = new ol.Feature(new ol.geom.Point([-37.643, 144.928]));
 // var source = new ol.source.Vector({features: [iconFeature]});
@@ -41,10 +59,11 @@ class App extends Component {
     this.setState({ displayWidth: window.innerWidth });
   };
 
+
+
   render() {
     const { displayWidth } = this.state;
     const mobile = (displayWidth <= 500);
-    // const middle_of_map = [144.928, -37.643];
     if(mobile) {
       return (
         <div className="App">
@@ -56,11 +75,13 @@ class App extends Component {
           </header>
           <Flex className='Mobile' p={2}>
             <Box className='Map' vertical-align='center' px={2} w={3/3}>
-            <Map className='MapView' view={{center: [144.928, -37.643], zoom: 4}} onClick={showPopup}>
-              <Layers>
-                <layer.Tile />
-              </Layers>
-            </Map>
+            <MyMapComponent
+              isMarkerShown
+              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+              loadingElement={<div style={{ height: `100%` }} />}
+              containerElement={<div style={{ height: `100%` }} />}
+              mapElement={<div style={{ height: `100%` }} />}
+            />
             <Box className='ListButton'><h1>Button</h1></Box>
             </Box>
           </Flex>
@@ -84,11 +105,13 @@ class App extends Component {
               </ul>
             </Box>
             <Box className='Map' px={2} w={2/3}>
-              <Map className='MapView' view={{center: [144.928, -37.643], zoom: 4}} onClick={showPopup}>
-                <Layers>
-                  <layer.Tile />
-                </Layers>
-              </Map>
+            <MyMapComponent
+              isMarkerShown
+              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+              loadingElement={<div style={{ height: `100%` }} />}
+              containerElement={<div style={{ height: `100%` }} />}
+              mapElement={<div style={{ height: `100%` }} />}
+            />
             </Box>
           </Flex>
         </div>

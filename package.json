@@ -7,6 +7,7 @@
     "openlayers": "^4.5.0",
     "react": "^16.0.0-beta.5",
     "react-dom": "^16.1.1",
+    "react-google-maps": "^9.4.0",
     "react-layout-components": "^3.0.6",
     "react-openlayers": "^0.2.1",
     "react-scripts": "1.0.17",
