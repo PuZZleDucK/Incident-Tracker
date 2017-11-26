@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Flex, Box } from 'reflexbox';
 import logo from './logo.svg';
 import './App.css';
-const { compose, withProps, withStateHandlers } = require("recompose");
+const { compose, withStateHandlers } = require("recompose");
 const FaAnchor = require("react-icons/lib/fa/anchor");
 const {
   withScriptjs,
@@ -26,11 +26,11 @@ const MapWithAMakredInfoWindow = compose(
   withGoogleMap
 )(props =>
   <GoogleMap
-    defaultZoom={8}
+    defaultZoom={5}
     defaultCenter={{ lat: -34.397, lng: 150.644 }}
   >
     <Marker
-      position={{ lat: -34.397, lng: 150.644 }}
+      position={{ lat: -37.643, lng: 144.928 }}
       onClick={props.onToggleOpen}
     >
       {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
@@ -39,16 +39,6 @@ const MapWithAMakredInfoWindow = compose(
     </Marker>
   </GoogleMap>
 );
-
-const MyMapComponent = withScriptjs(withGoogleMap((props) =>
-  <GoogleMap
-    defaultZoom={9}
-    defaultCenter={{ lat: -37.643, lng: 144.928 }}
-  >
-    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
-    {props.isMarkerShown && <Marker position={{ lat: -37.643, lng: 144.928 }} />}
-  </GoogleMap>
-))
 
 // function showPopup(evt) {
 //   this.overlayComp.overlay.setPosition(evt.coordinate);
