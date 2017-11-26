@@ -16,6 +16,8 @@
     "react-layout-components": "^3.0.6",
     "react-openlayers": "^0.2.1",
     "react-scripts": "1.0.17",
+    "react-scroll": "^1.6.7",
+    "react-scroll-box": "^0.2.9",
     "reflexbox": "^3.0.0-0",
     "turf": "^3.0.14"
   },
