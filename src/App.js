@@ -3,48 +3,89 @@ import React, { Component } from 'react';
 import { Flex, Box } from 'reflexbox';
 import logo from './logo.svg';
 import './App.css';
-const { compose, withStateHandlers } = require("recompose");
-const FaAnchor = require("react-icons/lib/fa/anchor");
+
+const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
+const { compose, withProps, withHandlers } = require("recompose");
 const FaMenu = require("react-icons/lib/fa/bars");
 const {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker,
-  InfoWindow,
+  // InfoWindow,
 } = require("react-google-maps");
 
-
-const MapWithAMakredInfoWindow = compose(
-  withStateHandlers(() => ({
-    isOpen: false,
-  }), {
-    onToggleOpen: ({ isOpen }) => () => ({
-      isOpen: !isOpen,
-    })
+const MapWithAMarkerClusterer = compose(
+  withProps({
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyChLjO94fJ0jizj33jXsoyOU2cyV4j3FWY&v=3.exp&libraries=geometry,drawing,places",
+    loadingElement: <div style={{ height: `100%` }} />,
+    containerElement: <div style={{ height: `100%` }} />,
+    mapElement: <div style={{ height: `100%` }} />,
+  }),
+  withHandlers({
+    onMarkerClustererClick: () => (markerClusterer) => {
+      const clickedMarkers = markerClusterer.getMarkers()
+      console.log(`Current clicked markers length: ${clickedMarkers.length}`)
+      console.log(clickedMarkers)
+    },
   }),
   withScriptjs,
   withGoogleMap
 )(props =>
   <GoogleMap
-    defaultZoom={5}
-    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+    defaultZoom={7}
+    defaultCenter={{ lat: -37.643, lng: 144.928 }}
   >
-    <Marker
-      position={{ lat: -37.643, lng: 144.928 }}
-      onClick={props.onToggleOpen}
+    <MarkerClusterer
+      onClick={props.onMarkerClustererClick}
+      averageCenter
+      enableRetinaIcons
+      gridSize={60}
     >
-      {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
-        <FaAnchor />
-      </InfoWindow>}
-    </Marker>
+      {props.incident_data.map(marker => (
+        <Marker
+          key={marker.description}
+          position={{ lat: parseInt(marker.lat, 10), lng: parseInt(marker.long, 10) }}
+        />
+      ))}
+    </MarkerClusterer>
   </GoogleMap>
 );
+
+
+// const MapWithAMakredInfoWindow = withScriptjs(withGoogleMap((props) =>
+//   <GoogleMap
+//     defaultZoom={5}
+//     defaultCenter={{ lat: -34.397, lng: 150.644 }}
+//   >
+//   {console.log("--- props")}
+//   {console.log(props)}
+//   {props.incident_data && props.incident_data.incidents.map(function(incident) {
+//       <Marker
+//         position={{ lat: -34, lng: 150 }}
+//         onClick={props.onToggleOpen}
+//       >
+//         {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
+//           <p>"{incident.title}"</p>
+//         </InfoWindow>}
+//       </Marker>
+//   })}
+//
+//     <Marker
+//       position={{ lat: -37.643, lng: 144.928 }}
+//       onClick={props.onToggleOpen}
+//     >
+//       {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
+//         <FaAnchor />
+//       </InfoWindow>}
+//     </Marker>
+//   </GoogleMap>
+// ));
 
 class App extends Component {
   constructor() {
     super();
-    this.state = { displayWidth: window.innerWidth, incident_data: [{"alert_type": "tow_allocation", "title": "Eastlink -, Carrum Downs"}] };
+    this.state = { displayWidth: window.innerWidth, incident_data: [] };
   }
 
   componentWillMount() {
@@ -82,6 +123,7 @@ class App extends Component {
 
   render() {
     const { displayWidth } = this.state;
+    const { incident_data } = this.state
     const mobile = (displayWidth <= 500);
     if(mobile) {
       return (
@@ -94,12 +136,7 @@ class App extends Component {
           </header>
           <Flex className='Mobile' p={2}>
             <Box className='Map' vertical-align='center' px={2} w={3/3}>
-            <MapWithAMakredInfoWindow
-              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyChLjO94fJ0jizj33jXsoyOU2cyV4j3FWY&v=3.exp&libraries=geometry,drawing,places"
-              loadingElement={<div style={{ height: `100%` }} />}
-              containerElement={<div style={{ height: `100%` }} />}
-              mapElement={<div style={{ height: `100%` }} />}
-            />
+                <MapWithAMarkerClusterer incident_data={incident_data} />
             <Box className='ListButton'><FaMenu size={50} /></Box>
             </Box>
           </Flex>
@@ -128,12 +165,7 @@ class App extends Component {
               </ul>
             </Box>
             <Box className='Map' px={2} w={2/3}>
-            <MapWithAMakredInfoWindow
-              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyChLjO94fJ0jizj33jXsoyOU2cyV4j3FWY&v=3.exp&libraries=geometry,drawing,places"
-              loadingElement={<div style={{ height: `100%` }} />}
-              containerElement={<div style={{ height: `100%` }} />}
-              mapElement={<div style={{ height: `100%` }} />}
-            />
+                <MapWithAMarkerClusterer incident_data={incident_data} />
             </Box>
           </Flex>
         </div>

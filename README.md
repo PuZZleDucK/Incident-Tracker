@@ -45,8 +45,9 @@ Below is information and notes I've used to drive development of the project and
 - [x] Sketch app design
 - [x] Prototype layouts
 - [x] Input/Parse data
-- [ ] Display markers
+- [x] Display markers
 - [ ] Display popoup data
+- [ ] limit list to currently visible
 - [ ] Display live data (check "last_modified" in json)
 - [ ] Develop additional functionality (optional)
 - [x] ssl (optional)
@@ -63,15 +64,15 @@ Below is information and notes I've used to drive development of the project and
 - [ ] simple browser based interface required to display incident locations and information each about each incident.
 - [x] incidents are published in a JSON feed which contains data about the incident type, description, location details etc.
 - [ ] live data
-- [ ] usually contains 300-400 items.(maximum number of items your solution needs to support).
+- [x] usually contains 300-400 items.(maximum number of items your solution needs to support). - 456 ok
 
 - [x] https://victraffic-api.wd.com.au/api/v3/incidents
 - [ ] Build a small single page JS application that has the following features:
 
-- [ ] Displays the incidents on an interactive map
-- [ ] Each incident in the feed should be displayed on the map with a marker
-- [ ] must be able to pan and zoom the map to explore incidents in a particular area
-- [ ] You can choose which map library to use
+- [x] Displays the incidents on an interactive map
+- [x] Each incident in the feed should be displayed on the map with a marker
+- [x] must be able to pan and zoom the map to explore incidents in a particular area
+- [x] You can choose which map library to use
 - [ ] When a user clicks an incident marker some basic information is shown
 - [ ] The following incident details are required to be displayed: alert_type, title, description
 - [ ] This information should be presented in a pop-up element that can be dismissed
