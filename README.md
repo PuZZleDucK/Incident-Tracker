@@ -43,7 +43,7 @@ Below is information and notes I've used to drive development of the project and
 - [x] Setup project infrastructure and pipelines
 - [x] Example data
 - [x] Sketch app design
-- [ ] Prototype layouts
+- [x] Prototype layouts
 - [ ] Input/Parse data
 - [ ] Display live data (check "last_modified" in json)
 - [ ] Blog

@@ -1,25 +1,50 @@
 
 import React, { Component } from 'react';
 import { Flex, Box } from 'reflexbox';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, FusionTablesLayer } from "react-google-maps"
-
 import logo from './logo.svg';
 import './App.css';
+const { compose, withProps, withStateHandlers } = require("recompose");
+const FaAnchor = require("react-icons/lib/fa/anchor");
+const {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+  InfoWindow,
+} = require("react-google-maps");
+
+
+const MapWithAMakredInfoWindow = compose(
+  withStateHandlers(() => ({
+    isOpen: false,
+  }), {
+    onToggleOpen: ({ isOpen }) => () => ({
+      isOpen: !isOpen,
+    })
+  }),
+  withScriptjs,
+  withGoogleMap
+)(props =>
+  <GoogleMap
+    defaultZoom={8}
+    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+  >
+    <Marker
+      position={{ lat: -34.397, lng: 150.644 }}
+      onClick={props.onToggleOpen}
+    >
+      {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
+        <FaAnchor />
+      </InfoWindow>}
+    </Marker>
+  </GoogleMap>
+);
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={9}
     defaultCenter={{ lat: -37.643, lng: 144.928 }}
   >
-  <FusionTablesLayer
-    url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"
-    options={{
-      query: {
-        select: `Geocodable address`,
-        from: `1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg`
-      }
-    }}
-  />
     {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
     {props.isMarkerShown && <Marker position={{ lat: -37.643, lng: 144.928 }} />}
   </GoogleMap>
@@ -75,9 +100,8 @@ class App extends Component {
           </header>
           <Flex className='Mobile' p={2}>
             <Box className='Map' vertical-align='center' px={2} w={3/3}>
-            <MyMapComponent
-              isMarkerShown
-              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+            <MapWithAMakredInfoWindow
+              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyChLjO94fJ0jizj33jXsoyOU2cyV4j3FWY&v=3.exp&libraries=geometry,drawing,places"
               loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `100%` }} />}
               mapElement={<div style={{ height: `100%` }} />}
@@ -105,9 +129,8 @@ class App extends Component {
               </ul>
             </Box>
             <Box className='Map' px={2} w={2/3}>
-            <MyMapComponent
-              isMarkerShown
-              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+            <MapWithAMakredInfoWindow
+              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyChLjO94fJ0jizj33jXsoyOU2cyV4j3FWY&v=3.exp&libraries=geometry,drawing,places"
               loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `100%` }} />}
               mapElement={<div style={{ height: `100%` }} />}
