@@ -45,9 +45,6 @@ const MapWithAMarkerClusterer = compose(
   withGoogleMap
 )(props =>
   <GoogleMap
-      onMapMounted={ (map) => {
-        refs.map = map;
-    }}
     onBoundsChanged={ () => {
       console.log("--- bounds")
       // for (var i=0; i<props.incident_data.length; i++){
