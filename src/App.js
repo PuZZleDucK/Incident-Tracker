@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import { Flex, Box } from 'reflexbox';
 import logo from './logo.svg';
 import './App.css';
-
+import MenuButton from './components/Button.react.js';
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
 const { compose, withProps, withHandlers, withStateHandlers } = require("recompose");
-const FaMenu = require("react-icons/lib/fa/bars");
+
 const {
   withScriptjs,
   withGoogleMap,
@@ -14,8 +14,6 @@ const {
   Marker,
   InfoWindow,
 } = require("react-google-maps");
-
-function ListButtonClicked(event){}
 
 const MapWithAMarkerClusterer = compose(
   withProps({
@@ -78,28 +76,10 @@ const MapWithAMarkerClusterer = compose(
 );
 
 
-// const MapWithAMakredInfoWindow = withScriptjs(withGoogleMap((props) =>
-//   <GoogleMap
-//     defaultZoom={5}
-//     defaultCenter={{ lat: -34.397, lng: 150.644 }}
-//   >
-
-//     <Marker
-//       position={{ lat: -37.643, lng: 144.928 }}
-//       onClick={props.onToggleOpen}
-//     >
-//       {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
-//         <FaAnchor />
-//       </InfoWindow>}
-//     </Marker>
-
-//   </GoogleMap>
-// ));
-
 class App extends Component {
   constructor() {
     super();
-    this.state = { displayWidth: window.innerWidth, incident_data: [] };
+    this.state = { displayWidth: window.innerWidth, incident_data: [], display_list: false };
   }
 
   componentWillMount() {
@@ -137,26 +117,55 @@ class App extends Component {
 
   render() {
     const { displayWidth } = this.state;
-    const { incident_data } = this.state
+    const { incident_data } = this.state;
+    const { display_list } = this.state;
     const mobile = (displayWidth <= 500);
-    if(mobile) {
+
+    if(mobile && !display_list) {
       return (
         <div className="App">
+        <header className="App-header">
+          <Flex p={2} align='center'>
+            <Box px={2} w={1/8}><img src={logo} className="App-logo" alt="logo" /></Box>
+            <Box px={2} w={7/8} align='left'><h1 align='left' className="App-title">Incident Tracker</h1></Box>
+          </Flex>
+        </header>
+          <Flex className='Mobile' p={2}>
+            <Box className='Map' vertical-align='center' px={2} w={3/3}>
+                <MapWithAMarkerClusterer incident_data={incident_data} />
+            <MenuButton />
+            </Box>
+          </Flex>
+        </div>
+      );
+    } else if(mobile && display_list) {
+        return (
+          <div className="App">
           <header className="App-header">
             <Flex p={2} align='center'>
               <Box px={2} w={1/8}><img src={logo} className="App-logo" alt="logo" /></Box>
               <Box px={2} w={7/8} align='left'><h1 align='left' className="App-title">Incident Tracker</h1></Box>
             </Flex>
           </header>
-          <Flex className='Mobile' p={2}>
-            <Box className='Map' vertical-align='center' px={2} w={3/3}>
-                <MapWithAMarkerClusterer incident_data={incident_data} />
-            <Box className='ListButton' onClick={ListButtonClicked} >hamburger<FaMenu size={50} /></Box>
-            </Box>
-          </Flex>
-        </div>
-      );
-    } else {
+            <Flex className='Mobile' p={2}>
+            <Box className='List' px={2} w={1/3}>
+                <ul>
+                  <li><h2>Current Incidents:</h2></li>
+                    {this.state.incident_data.map(function(incident) {
+                      return (
+                        <li key={incident.title} className="incident">
+                            <h3>{incident.alert_type} - {incident.title}</h3>
+                        </li>
+                      );
+                    })}
+                </ul>
+                <MenuButton />
+              </Box>
+
+            </Flex>
+          </div>
+        );
+      } else {
       return (
         <div className="App">
           <header className="App-header">

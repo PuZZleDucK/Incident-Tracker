@@ -50,7 +50,7 @@ Below is information and notes I've used to drive development of the project and
 - [ ] mobile list toggle
 - [ ] limit list to currently visible
 - [ ] Display live data (check "last_modified" in json)
-- [ ] Make popups independant
+- [ ] Make popups independant (make property a hash lookup on marker key)
 - [ ] Cleanup packages
 - [ ] Develop additional functionality (optional)
 - [x] ssl (optional)
