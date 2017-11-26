@@ -2,11 +2,12 @@
 import React, { Component } from 'react';
 import { Flex, Box } from 'reflexbox';
 import './App.css';
-import MenuButton from './components/Button.react.js';
+// import MenuButton from './components/Button.react.js';
 // import ClusterMap from './components/ClusterMap.js';
-import PageHeader from './components/PageHeader.react.js';
 // import IncidentList from './components/IncidentList.react.js';
+import PageHeader from './components/PageHeader.react.js';
 import ListEntry from './components/ListEntry.react.js';
+const FaMenu = require("react-icons/lib/fa/bars");
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
 const { compose, withProps, withHandlers, withStateHandlers } = require("recompose");
 
@@ -116,7 +117,11 @@ class App extends Component {
     this.setState({ displayWidth: window.innerWidth });
   };
 
-
+  ListButtonClicked = () => {
+    this.setState((prevState, props) => ({
+      display_list: (!prevState.display_list)
+    }));
+  }
 
   render() {
     const { displayWidth } = this.state;
@@ -131,7 +136,7 @@ class App extends Component {
           <Flex className='Mobile' p={2}>
             <Box className='Map' vertical-align='center' px={2} w={3/3}>
                 <MapWithAMarkerClusterer incident_data={incident_data} />
-            <MenuButton />
+              <button className='ListButton' onClick={this.ListButtonClicked} ><FaMenu size={30} /></button>
             </Box>
           </Flex>
         </div>
@@ -141,7 +146,7 @@ class App extends Component {
           <div className="App">
           <PageHeader />
             <Flex className='Mobile' p={2}>
-            <Box className='List' px={2} w={1/3}>
+            <Box className='List' px={2} w={2/3}>
                 <div>
                   <div><h2>Current Incidents:</h2></div>
                     {this.state.incident_data.map(function(incident) {
@@ -152,7 +157,10 @@ class App extends Component {
                       );
                     })}
                 </div>
-                <MenuButton />
+                <button className='ListButton' onClick={this.ListButtonClicked} ><FaMenu size={30} /></button>
+              </Box>
+              <Box className='Map' vertical-align='center' px={2} w={1/3}>
+                  <MapWithAMarkerClusterer incident_data={incident_data} />
               </Box>
 
             </Flex>
