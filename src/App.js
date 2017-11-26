@@ -19,6 +19,7 @@ const {
   InfoWindow,
 } = require("react-google-maps");
 
+let refs = {};
 const MapWithAMarkerClusterer = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyChLjO94fJ0jizj33jXsoyOU2cyV4j3FWY&v=3.exp&libraries=geometry,drawing,places",
@@ -44,6 +45,17 @@ const MapWithAMarkerClusterer = compose(
   withGoogleMap
 )(props =>
   <GoogleMap
+      onMapMounted={ (map) => {
+        refs.map = map;
+    }}
+    onBoundsChanged={ () => {
+      console.log("--- bounds")
+      // for (var i=0; i<props.incident_data.length; i++){
+      //     if( refs.map.getBounds().contains(props.incident_data[i].getPosition()) ){
+      //       console.log("--- IN bounds")
+      //     }
+      // }
+    }}
     defaultZoom={7}
     defaultCenter={{ lat: -37.643, lng: 144.928 }}
   >
