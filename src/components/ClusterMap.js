@@ -34,6 +34,13 @@ const ClusterMap = compose(
   withGoogleMap
 )(props =>
   <GoogleMap
+    onBoundsChanged={() => {
+      console.log("--- bounds")
+      // for (var i=0; i<props.incident_data.length; i++){
+      //     if( getBounds().contains(props.incident_data[i].getPosition()) ){
+      //     }
+      // }
+    }}
     defaultZoom={7}
     defaultCenter={{ lat: -37.643, lng: 144.928 }}
   >

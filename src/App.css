@@ -4,10 +4,20 @@
 }
 
 .Desktop {
+  border-style: ridge;
+  border-width: 5px;
+  border-color: #332000;
+  background-color: #11DD11;
   height: 90% !important;
+  align-items: center;
+  justify-content: center;
 }
 
 .Mobile {
+  border-style: ridge;
+  border-width: 5px;
+  border-color: #332000;
+  background-color: #11DD11;
   height: 90% !important;
 }
 
@@ -17,14 +27,18 @@
 }
 
 .ListButton {
-  background-color: #FF0;
+  border-style: ridge;
+  border-width: 5px;
+  border-color: #332000;
+  background-color: #329A00;
+  color: #000;
   position: absolute;
-  left: 1.5em;
-  top: 7em;
+  left: 2em;
+  top: 8.5em;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 5s linear;
+  animation: App-logo-spin infinite 3s linear;
   height: 50px;
   display: flex;
   align-items: center;
@@ -32,10 +46,13 @@
 }
 
 .App-header {
-  background-color: #000;
+  border-style: ridge;
+  border-width: 5px;
+  border-color: #331100;
+  background-color: #331100;
   height: 80px;
   padding: 5px;
-  color: yellow;
+  color: #11DD11;
 }
 
 html, body {
@@ -47,8 +64,38 @@ html, body {
   height: 100% !important;
 }
 
+.incident {
+  border-style: ridge;
+  border-width: 5px;
+  border-color: #331100;
+  color: #11DD11;
+  background-color: #331100;
+  width: 100%;
+}
+
+ul {
+  padding-left: 0px;
+}
+
+h5 {
+  padding: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+  text-decoration: underline;
+}
+
+p {
+  padding: 0px;
+  margin: 2px;
+}
+
 .List {
-  background-color: #F00;
+  border-style: groove;
+  border-width: 5px;
+  border-color: #331100;
+  background-color: #11DD11;
   height: 100% !important;
   align-self: center;
   display: flex;
@@ -59,7 +106,10 @@ html, body {
 }
 
 .Map {
-  background-color: #0F0;
+  border-style: groove;
+  border-width: 5px;
+  border-color: #331100;
+  background-color: #11DD11;
   height: 100% !important;
   width: 100% !important;
 }

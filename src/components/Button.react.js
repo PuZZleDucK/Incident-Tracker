@@ -14,7 +14,7 @@ class MenuButton extends React.PureComponent {
 
   render() {
     return (
-      <button className='ListButton' onClick={this.ListButtonClicked} ><FaMenu size={50} /></button>
+      <button className='ListButton' onClick={this.ListButtonClicked} ><FaMenu size={30} /></button>
     );
   }
 }

@@ -51,7 +51,7 @@ Below is information and notes I've used to drive development of the project and
 - [ ] limit list to currently visible
 - [ ] Display live data (check "last_modified" in json)
 - [ ] Make popups independant (make property a hash lookup on marker key)
-- [ ] Cleanup packages
+- [x] Cleanup packages
 - [ ] Develop additional functionality (optional)
 - [x] ssl (optional)
 - [ ] live user location (compass mode)
