@@ -4,6 +4,7 @@ import { Flex, Box } from 'reflexbox';
 import logo from './logo.svg';
 import './App.css';
 import MenuButton from './components/Button.react.js';
+import ListEntry from './components/ListEntry.react.js';
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
 const { compose, withProps, withHandlers, withStateHandlers } = require("recompose");
 
@@ -180,9 +181,7 @@ class App extends Component {
                 <li><h2>Current Incidents:</h2></li>
                   {this.state.incident_data.map(function(incident) {
                     return (
-                      <li key={incident.title} className="incident">
-                          <h3>{incident.alert_type} - {incident.title}</h3>
-                      </li>
+                      <ListEntry title={incident.title} type={incident.alert_type} key={incident.id} />
                     );
                   })}
               </ul>
