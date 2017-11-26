@@ -15,7 +15,7 @@ Responsive layout
 GitHub Pages for hosting
 No storage requirements... no back end required
 Tests: Jasmine & Karma (Jest?)
-Maps: open layers and turf
+Maps: Google Maps API
 
 
 ### Want to find out more
@@ -46,9 +46,12 @@ Below is information and notes I've used to drive development of the project and
 - [x] Prototype layouts
 - [x] Input/Parse data
 - [x] Display markers
-- [ ] Display popoup data
+- [x] Display popoup data
+- [ ] mobile list toggle
 - [ ] limit list to currently visible
 - [ ] Display live data (check "last_modified" in json)
+- [ ] Make popups independant
+- [ ] Cleanup packages
 - [ ] Develop additional functionality (optional)
 - [x] ssl (optional)
 - [ ] live user location (compass mode)
@@ -73,9 +76,9 @@ Below is information and notes I've used to drive development of the project and
 - [x] Each incident in the feed should be displayed on the map with a marker
 - [x] must be able to pan and zoom the map to explore incidents in a particular area
 - [x] You can choose which map library to use
-- [ ] When a user clicks an incident marker some basic information is shown
-- [ ] The following incident details are required to be displayed: alert_type, title, description
-- [ ] This information should be presented in a pop-up element that can be dismissed
+- [x] When a user clicks an incident marker some basic information is shown
+- [x] The following incident details are required to be displayed: alert_type, title, description
+- [x] This information should be presented in a pop-up element that can be dismissed
 
 - [x] Displays incidents in a list
 - [ ] As the user pans and zooms the map interface the incident list needs to be updated to show only the incidents currently visible on the map

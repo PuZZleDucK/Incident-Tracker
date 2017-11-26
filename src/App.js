@@ -5,14 +5,14 @@ import logo from './logo.svg';
 import './App.css';
 
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
-const { compose, withProps, withHandlers } = require("recompose");
+const { compose, withProps, withHandlers, withStateHandlers } = require("recompose");
 const FaMenu = require("react-icons/lib/fa/bars");
 const {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker,
-  // InfoWindow,
+  InfoWindow,
 } = require("react-google-maps");
 
 const MapWithAMarkerClusterer = compose(
@@ -29,6 +29,13 @@ const MapWithAMarkerClusterer = compose(
       console.log(clickedMarkers)
     },
   }),
+  withStateHandlers(() => ({
+    isOpen: false,
+  }), {
+    onToggleOpen: ({ isOpen }) => () => ({
+      isOpen: !isOpen,
+    })
+  }),
   withScriptjs,
   withGoogleMap
 )(props =>
@@ -40,13 +47,29 @@ const MapWithAMarkerClusterer = compose(
       onClick={props.onMarkerClustererClick}
       averageCenter
       enableRetinaIcons
-      gridSize={60}
+      gridSize={1}
     >
       {props.incident_data.map(marker => (
         <Marker
           key={marker.description}
           position={{ lat: parseInt(marker.lat, 10), lng: parseInt(marker.long, 10) }}
-        />
+          onClick={props.onToggleOpen}
+        >
+
+        {props.isOpen && <InfoWindow
+          onCloseClick={props.onToggleOpen}
+          options={{ closeBoxURL: ``, enableEventPropagation: true }}
+        >
+          <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>
+            <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
+              <h5>{marker.alert_type}</h5>
+              <p>{marker.title}</p>
+              <p>{marker.description}</p>
+            </div>
+          </div>
+        </InfoWindow>}
+
+        </Marker>
       ))}
     </MarkerClusterer>
   </GoogleMap>
@@ -58,19 +81,7 @@ const MapWithAMarkerClusterer = compose(
 //     defaultZoom={5}
 //     defaultCenter={{ lat: -34.397, lng: 150.644 }}
 //   >
-//   {console.log("--- props")}
-//   {console.log(props)}
-//   {props.incident_data && props.incident_data.incidents.map(function(incident) {
-//       <Marker
-//         position={{ lat: -34, lng: 150 }}
-//         onClick={props.onToggleOpen}
-//       >
-//         {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
-//           <p>"{incident.title}"</p>
-//         </InfoWindow>}
-//       </Marker>
-//   })}
-//
+
 //     <Marker
 //       position={{ lat: -37.643, lng: 144.928 }}
 //       onClick={props.onToggleOpen}
@@ -79,6 +90,7 @@ const MapWithAMarkerClusterer = compose(
 //         <FaAnchor />
 //       </InfoWindow>}
 //     </Marker>
+
 //   </GoogleMap>
 // ));
 
