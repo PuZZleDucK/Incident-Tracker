@@ -1,12 +1,12 @@
+import React, { Component } from "react";
+import { Flex, Box } from "reflexbox";
+import "./App.css";
+import MenuButton from "./components/Button.react.js";
+// import ClusterMap from "./components/ClusterMap.js";
+// import IncidentList from "./components/IncidentList.react.js";
+import PageHeader from "./components/PageHeader.react.js";
+import ListEntry from "./components/ListEntry.react.js";
 
-import React, { Component } from 'react';
-import { Flex, Box } from 'reflexbox';
-import './App.css';
-// import MenuButton from './components/Button.react.js';
-// import ClusterMap from './components/ClusterMap.js';
-// import IncidentList from './components/IncidentList.react.js';
-import PageHeader from './components/PageHeader.react.js';
-import ListEntry from './components/ListEntry.react.js';
 const FaMenu = require("react-icons/lib/fa/bars");
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
 const { compose, withProps, withHandlers, withStateHandlers } = require("recompose");
@@ -144,7 +144,7 @@ class App extends Component {
           <Flex className='Mobile' p={2}>
             <Box className='Map' vertical-align='center' px={2} w={3/3}>
                 <MapWithAMarkerClusterer incident_data={incident_data} />
-              <button className='ListButton' onClick={this.ListButtonClicked} ><FaMenu size={30} /></button>
+              <MenuButton />
             </Box>
           </Flex>
         </div>
