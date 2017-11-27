@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 const {
   InfoWindow,
 } = require("react-google-maps");
@@ -6,12 +6,12 @@ const {
 class InfoPopup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { marker: props.marker }
+    this.state = { marker: props.marker };
   }
 
   render() {
     // const {displayed} = this.state
-    const {onClick} = this.state
+    const {onClick} = this.state;
     // if(displayed) {
       return (
         <InfoWindow
@@ -30,7 +30,7 @@ class InfoPopup extends React.Component {
     // } else {
     //   return (<div></div>);
     // }
-  }
-}
+  };
+};
 
 export default InfoPopup;

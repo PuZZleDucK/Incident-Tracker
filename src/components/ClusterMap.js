@@ -1,5 +1,5 @@
-import React from 'react';
-import MapMarker from './MapMarker.react.js';
+import React from "react";
+import MapMarker from "./MapMarker.react.js";
 const { compose, withProps, withHandlers, withStateHandlers } = require("recompose");
 
 const {
@@ -18,9 +18,9 @@ const ClusterMap = compose(
   }),
   withHandlers({
     onMarkerClustererClick: () => (markerClusterer) => {
-      const clickedMarkers = markerClusterer.getMarkers()
-      console.log(`Current clicked markers length: ${clickedMarkers.length}`)
-      console.log(clickedMarkers)
+      const clickedMarkers = markerClusterer.getMarkers();
+      console.log(`Current clicked markers length: ${clickedMarkers.length}`);
+      console.log(clickedMarkers);
     },
   }),
   withStateHandlers(() => ({
@@ -35,7 +35,7 @@ const ClusterMap = compose(
 )(props =>
   <GoogleMap
     onBoundsChanged={() => {
-      console.log("--- bounds")
+      console.log("--- bounds");
       // for (var i=0; i<props.incident_data.length; i++){
       //     if( getBounds().contains(props.incident_data[i].getPosition()) ){
       //     }

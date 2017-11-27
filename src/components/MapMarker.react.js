@@ -1,5 +1,5 @@
-import React from 'react';
-import InfoPopup from './InfoPopup.react.js';
+import React from "react";
+import InfoPopup from "./InfoPopup.react.js";
 const {
   Marker,
 } = require("react-google-maps");
@@ -7,7 +7,7 @@ const {
 class MapMarker extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {display_popup: false, marker_data: props.marker_data}
+    this.state = {display_popup: false, marker_data: props.marker_data};
   }
 
   onClickMarker = () => {
@@ -27,7 +27,7 @@ class MapMarker extends React.Component {
 
       </Marker>
     );
-  }
-}
+  };
+};
 
 export default MapMarker;

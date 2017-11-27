@@ -28,9 +28,9 @@ const MapWithAMarkerClusterer = compose(
   }),
   withHandlers({
     onMarkerClustererClick: () => (markerClusterer) => {
-      const clickedMarkers = markerClusterer.getMarkers()
-      console.log(`Current clicked markers length: ${clickedMarkers.length}`)
-      console.log(clickedMarkers)
+      const clickedMarkers = markerClusterer.getMarkers();
+      console.log(`Current clicked markers length: ${clickedMarkers.length}`);
+      console.log(clickedMarkers);
     },
   }),
   withStateHandlers(() => ({
@@ -45,7 +45,7 @@ const MapWithAMarkerClusterer = compose(
 )(props =>
   <GoogleMap
     onBoundsChanged={ () => {
-      console.log("--- bounds")
+      console.log("--- bounds");
       // for (var i=0; i<props.incident_data.length; i++){
       //     if( refs.map.getBounds().contains(props.incident_data[i].getPosition()) ){
       //       console.log("--- IN bounds")
@@ -76,39 +76,37 @@ const MapWithAMarkerClusterer = compose(
   </GoogleMap>
 );
 
-
 class App extends Component {
   constructor() {
     super();
     this.state = { displayWidth: window.innerWidth, incident_data: [], display_list: false };
-  }
+  };
 
   componentWillMount() {
-    window.addEventListener('resize', this.handleWindowSizeChange);
+    window.addEventListener("resize", this.handleWindowSizeChange);
     console.log("--- will mount");
     const th = this;
     const request = new XMLHttpRequest();
-    request.responseType = "text/plain"
-    request.open('GET', "https://cors-anywhere.herokuapp.com/https://victraffic-api.wd.com.au/api/v3/incidents", true);
+    request.responseType = "text/plain";
+    request.open("GET", "https://cors-anywhere.herokuapp.com/https://victraffic-api.wd.com.au/api/v3/incidents", true);
     request.onload = function() {
-     var responseText = request.responseText;
-     console.log("--- response");
-           th.setState({
-             incident_data: JSON.parse(responseText).incidents
-           });
+      const responseText = request.responseText;
+      console.log("--- response");
+      th.setState({
+        incident_data: JSON.parse(responseText).incidents
+      });
     };
 
     request.onerror = function() {
       console.log("--- error");
-      console.log('There was an error!');
+      console.log("There was an error!");
     };
     request.send();
-
-  }
+  };
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleWindowSizeChange);
-  }
+    window.removeEventListener("resize", this.handleWindowSizeChange);
+  };
 
   handleWindowSizeChange = () => {
     this.setState({ displayWidth: window.innerWidth });
@@ -118,7 +116,7 @@ class App extends Component {
     this.setState((prevState, props) => ({
       display_list: (!prevState.display_list)
     }));
-  }
+  };
 
   render() {
     const { displayWidth } = this.state;
@@ -130,8 +128,8 @@ class App extends Component {
       return (
         <div className="App">
           <PageHeader />
-          <Flex className='Mobile' p={2}>
-            <Box className='Map' vertical-align='center' px={2} w={3/3}>
+          <Flex className="Mobile" p={2}>
+            <Box className="Map" vertical-align="center" px={2} w={3/3}>
                 <MapWithAMarkerClusterer incident_data={incident_data} />
               <MenuButton />
             </Box>
@@ -142,8 +140,8 @@ class App extends Component {
         return (
           <div className="App">
           <PageHeader />
-            <Flex className='Mobile' p={2}>
-            <Box className='List' px={2} w={2/3}>
+            <Flex className="Mobile" p={2}>
+            <Box className="List" px={2} w={2/3}>
                 <div>
                   <div><h2>Current Incidents:</h2></div>
                     {this.state.incident_data.map(function(incident) {
@@ -154,9 +152,9 @@ class App extends Component {
                       );
                     })}
                 </div>
-                <button className='ListButton' onClick={this.ListButtonClicked} ><FaMenu size={30} /></button>
+                <button className="ListButton" onClick={this.ListButtonClicked} ><FaMenu size={30} /></button>
               </Box>
-              <Box className='Map' vertical-align='center' px={2} w={1/3}>
+              <Box className="Map" vertical-align="center" px={2} w={1/3}>
                   <MapWithAMarkerClusterer incident_data={incident_data} />
               </Box>
 
@@ -167,8 +165,8 @@ class App extends Component {
       return (
         <div className="App">
           <PageHeader />
-          <Flex className='Desktop' p={2}>
-          <Box className='List' px={2} w={1/3}>
+          <Flex className="Desktop" p={2}>
+          <Box className="List" px={2} w={1/3}>
               <ul>
                 <li><h2>Current Incidents:</h2></li>
                   {this.state.incident_data.map(function(incident) {
@@ -178,7 +176,7 @@ class App extends Component {
                   })}
               </ul>
             </Box>
-            <Box className='Map' px={2} w={2/3}>
+            <Box className="Map" px={2} w={2/3}>
                 <MapWithAMarkerClusterer incident_data={incident_data} />
             </Box>
           </Flex>

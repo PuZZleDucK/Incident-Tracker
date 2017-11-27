@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 class ListEntry extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {title: props.title, type: props.type}
+    this.state = {title: props.title, type: props.type};
   }
 
   render() {
@@ -13,7 +13,7 @@ class ListEntry extends React.Component {
         <p>{this.state.title}</p>
       </li>
     );
-  }
-}
+  };
+};
 
 export default ListEntry;
