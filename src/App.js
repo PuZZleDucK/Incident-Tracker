@@ -4,6 +4,7 @@ import "./App.css";
 import MenuButton from "./components/Button.react.js";
 // import ClusterMap from "./components/ClusterMap.js";
 // import IncidentList from "./components/IncidentList.react.js";
+import InfoPopup from "./components/InfoPopup.react.js";
 import PageHeader from "./components/PageHeader.react.js";
 import ListEntry from "./components/ListEntry.react.js";
 
@@ -16,7 +17,6 @@ const {
   withGoogleMap,
   GoogleMap,
   Marker,
-  InfoWindow,
 } = require("react-google-maps");
 
 const MapWithAMarkerClusterer = compose(
@@ -63,23 +63,12 @@ const MapWithAMarkerClusterer = compose(
     >
       {props.incident_data.map(marker => (
         <Marker
-          key={marker.description}
+          key={marker.id}
           position={{ lat: parseFloat(marker.lat, 10), lng: parseFloat(marker.long, 10) }}
           onClick={props.onToggleOpen}
         >
 
-        {props.isOpen && <InfoWindow
-          onCloseClick={props.onToggleOpen}
-          options={{ closeBoxURL: ``, enableEventPropagation: true }}
-        >
-          <div className="popup" style={{ backgroundColor: '#331100', opacity: 1, padding: `0px`, margin: `0px`, color: `#11DD11` }}>
-            <div style={{ fontSize: `12px`, color: `#11DD11` }}>
-              <h4>{marker.alert_type} - {marker.title}</h4>
-              <hr />
-              <span>{marker.description}</span>
-            </div>
-          </div>
-        </InfoWindow>}
+        {props.isOpen && <InfoPopup marker={marker} />}
 
         </Marker>
       ))}
@@ -100,7 +89,7 @@ class App extends Component {
     const th = this;
     const request = new XMLHttpRequest();
     request.responseType = "text/plain"
-    request.open('GET', "https://crossorigin.me/https://victraffic-api.wd.com.au/api/v3/incidents", true);
+    request.open('GET', "https://cors-anywhere.herokuapp.com/https://victraffic-api.wd.com.au/api/v3/incidents", true);
     request.onload = function() {
      var responseText = request.responseText;
      console.log("--- response");

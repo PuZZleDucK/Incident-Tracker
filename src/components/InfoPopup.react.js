@@ -6,7 +6,7 @@ const {
 class InfoPopup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {displayed: props.displayed, marker: props.marker, onClick: props.onClick}
+    this.state = { marker: props.marker }
   }
 
   render() {

@@ -18,6 +18,7 @@ I started my project with a few sketches of how I wanted the page to look:
 - Jasmine & Karma were the testing frameworks but few tests have been written so far
 - Google Maps API and react-google-maps were used for the mapping components
 - Many components were extracted into their own moduls
+- Cross origin hacks courtisy of https://crossorigin.me and https://cors-anywhere
 
 - Source: https://github.com/PuZZleDucK/Incident-Tracker.git
 - Deployment: https://puzzleduck.github.io/Incident-Tracker/
@@ -41,6 +42,7 @@ Below is information and notes I've used to drive development of the project and
 ### Notes
 
 - Known values for incident_type: tow_allocation, alert, emergency, roadworks and event (may be open ended?)
+- I'm starting to rely on the assumption that the incident id is unique
 
 ### The Plan
 
