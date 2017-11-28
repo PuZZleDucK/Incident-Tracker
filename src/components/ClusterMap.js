@@ -1,30 +1,62 @@
-import React from "react";
 import ClusterGroup from "./ClusterGroup.react.js";
+import React from "react";
+const { compose, withProps, lifecycle } = require("recompose");
 const {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
+  Marker,
 } = require("react-google-maps");
 
+const MapWithCluster = compose(
+  withProps({
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",
+    loadingElement: <div style={{ height: `100%` }} />,
+    containerElement: <div style={{ height: `400px` }} />,
+    mapElement: <div style={{ height: `100%` }} />,
+  }),
+  lifecycle({
+    componentWillMount() {
+      const refs = {}
 
-class ClusterMap extends React.PureComponent {
-  state = {
-    incident_data: [],
-  }
+      this.setState({
+        bounds: null,
+        markers: [],
+        onMapMounted: ref => {
+          refs.map = ref;
+        },
+        onBoundsChanged: () => {
+          console.log("getBounds()");
+          console.log(refs.map.getBounds());
+          //       for (var i=0; i<this.state.incident_data.length; i++){
+          //           // if( contains({lat: this.state.incident_data[i].lat, lng: this.state.incident_data[i].long} )) {
+          //           //   console.log("--- IN bounds")
+          //           // }
+          this.setState({
+            bounds: refs.map.getBounds(),
+          })
+        },
+      })
+    },
+  }),
+  withScriptjs,
+  withGoogleMap
+)(props =>
+  <GoogleMap
+    ref={props.onMapMounted}
+    defaultZoom={9}
+    center={{ lat: -37.643, lng: 144.928 }}
+    onBoundsChanged={props.onBoundsChanged}
+  >
+    {props.markers.map((marker, index) =>
+      <Marker key={index} position={marker.position} />
+    )}
+    <ClusterGroup incident_data={props.incident_data} />
+  </GoogleMap>
+);
 
-  componentDidMount() {
-   // this.delayedShowMarker()
-  }
 
-  boundsChanged = () => {
-    console.log("--- BOUNDS CHANGED");
-    // for (var i=0; i<this.incident_data.length; i++){
-        // if( this.myMap.contains({lat: props.incident_data[i].lat, lng: props.incident_data[i].long} )) {
-        //   console.log("--- IN bounds")
-        // }
-    // }
-  }
-
+class ClusterMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {incident_data: props.incident_data};
@@ -32,38 +64,14 @@ class ClusterMap extends React.PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("--- map props change");
     this.setState({ incident_data: nextProps.incident_data });
   }
 
   render() {
-    console.log("--- MAP RENDER");
-    const MapWithAMarkerClusterer = withScriptjs(withGoogleMap((props) =>
-      <GoogleMap
-        onBoundsChanged={ () => {
-          this.boundsChanged();
-        }}
-        defaultZoom={7}
-        defaultCenter={{ lat: -37.643, lng: 144.928 }}
-      >
-        <ClusterGroup incident_data={this.state.incident_data} />
-      </GoogleMap>
-    ));
-
     return(
-      <MapWithAMarkerClusterer
-        incident_data={this.incident_data}
-        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyChLjO94fJ0jizj33jXsoyOU2cyV4j3FWY&v=3.exp&libraries=geometry,drawing,places"
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `100%` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-      />
+      <MapWithCluster incident_data={this.state.incident_data} />
     );
-  }
-}
-
-
-
-
+  };
+};
 
 export default ClusterMap;

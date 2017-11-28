@@ -9,8 +9,16 @@ import PageHeader from "./components/PageHeader.react.js";
 class App extends Component {
   constructor() {
     super();
-    this.state = { displayWidth: window.innerWidth, incident_data: [], display_list: false };
+    this.state = { displayWidth: window.innerWidth, incident_data: [], displayed_incident_data: [], display_list: false };
   };
+
+  updateDisplayedList(e) {
+    // this.setState({
+    //   displayed_incident_data: e
+    // });
+    console.log("!!! UPDATE");
+    console.log(e);
+  }
 
   componentWillMount() {
     window.addEventListener("resize", this.handleWindowSizeChange);
@@ -56,7 +64,7 @@ class App extends Component {
           <PageHeader />
           <Flex className="Mobile" p={2}>
             <Box className="Map" vertical-align="center" px={2} w={3/3}>
-              <ClusterMap incident_data={this.state.incident_data} />
+              <ClusterMap incident_data={this.state.incident_data} updateDisplayedList={this.updateDisplayedList} />
               <MenuButton mapped_incident_data={this.state.incident_data} />
             </Box>
           </Flex>
