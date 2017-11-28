@@ -60,7 +60,7 @@ Below is information and notes I've used to drive development of the project and
 - [x] mobile list toggle
 - [ ] limit list to currently visible
 - [ ] Display live data (check "last_modified" in json)
-- [ ] Make popups independant (make property a hash lookup on marker key)
+- [x] Make popups independant (make property a hash lookup on marker key)
 - [x] Cleanup packages
 - [x] ssl (optional)
 - [ ] live user location (compass mode)
