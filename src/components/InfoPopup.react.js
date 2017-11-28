@@ -6,16 +6,14 @@ const {
 class InfoPopup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { marker: props.marker };
+    this.state = { marker: props.marker, click_event: props.click_event };
   }
 
   render() {
-    // const {displayed} = this.state
-    const {onClick} = this.state;
-    // if(displayed) {
+    const {click_event} = this.state;
       return (
         <InfoWindow
-          onCloseClick={onClick}
+          onCloseClick={click_event}
           options={{ closeBoxURL: ``, enableEventPropagation: true }}
         >
           <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>
@@ -27,9 +25,6 @@ class InfoPopup extends React.Component {
           </div>
         </InfoWindow>
       );
-    // } else {
-    //   return (<div></div>);
-    // }
   };
 };
 

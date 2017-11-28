@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Flex, Box } from "reflexbox";
 import "./App.css";
 import MenuButton from "./components/Button.react.js";
+import MapMarker from "./components/MapMarker.react.js";
 // import ClusterMap from "./components/ClusterMap.js";
 // import IncidentList from "./components/IncidentList.react.js";
-import InfoPopup from "./components/InfoPopup.react.js";
 import PageHeader from "./components/PageHeader.react.js";
 import ListEntry from "./components/ListEntry.react.js";
 
@@ -16,7 +16,6 @@ const {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker,
 } = require("react-google-maps");
 
 const MapWithAMarkerClusterer = compose(
@@ -62,15 +61,7 @@ const MapWithAMarkerClusterer = compose(
       gridSize={30}
     >
       {props.incident_data.map(marker => (
-        <Marker
-          key={marker.id}
-          position={{ lat: parseFloat(marker.lat, 10), lng: parseFloat(marker.long, 10) }}
-          onClick={props.onToggleOpen}
-        >
-
-        {props.isOpen && <InfoPopup marker={marker} />}
-
-        </Marker>
+        <MapMarker marker_data={marker} />
       ))}
     </MarkerClusterer>
   </GoogleMap>
