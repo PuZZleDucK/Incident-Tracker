@@ -2,70 +2,70 @@ import React, { Component } from "react";
 import { Flex, Box } from "reflexbox";
 import "./App.css";
 import MenuButton from "./components/Button.react.js";
-import MapMarker from "./components/MapMarker.react.js";
-// import ClusterMap from "./components/ClusterMap.js";
+import ClusterMap from "./components/ClusterMap.js";
 // import IncidentList from "./components/IncidentList.react.js";
 import PageHeader from "./components/PageHeader.react.js";
 import ListEntry from "./components/ListEntry.react.js";
 
 const FaMenu = require("react-icons/lib/fa/bars");
-const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
-const { compose, withProps, withHandlers, withStateHandlers } = require("recompose");
 
-const {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-} = require("react-google-maps");
 
-const MapWithAMarkerClusterer = compose(
-  withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyChLjO94fJ0jizj33jXsoyOU2cyV4j3FWY&v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `100%` }} />,
-    mapElement: <div style={{ height: `100%` }} />,
-  }),
-  withHandlers({
-    onMarkerClustererClick: () => (markerClusterer) => {
-      const clickedMarkers = markerClusterer.getMarkers();
-      console.log(`Current clicked markers length: ${clickedMarkers.length}`);
-      console.log(clickedMarkers);
-    },
-  }),
-  withStateHandlers(() => ({
-    isOpen: false,
-  }), {
-    onToggleOpen: ({ isOpen }) => () => ({
-      isOpen: !isOpen,
-    })
-  }),
-  withScriptjs,
-  withGoogleMap
-)(props =>
-  <GoogleMap
-    onBoundsChanged={ () => {
-      console.log("--- bounds");
-      // for (var i=0; i<props.incident_data.length; i++){
-      //     if( refs.map.getBounds().contains(props.incident_data[i].getPosition()) ){
-      //       console.log("--- IN bounds")
-      //     }
-      // }
-    }}
-    defaultZoom={7}
-    defaultCenter={{ lat: -37.643, lng: 144.928 }}
-  >
-    <MarkerClusterer
-      onClick={props.onMarkerClustererClick}
-      averageCenter
-      enableRetinaIcons
-      gridSize={30}
-    >
-      {props.incident_data.map(marker => (
-        <MapMarker marker_data={marker} />
-      ))}
-    </MarkerClusterer>
-  </GoogleMap>
-);
+
+// const MapWithAMarkerClusterer = compose(
+//   withProps({
+//     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyChLjO94fJ0jizj33jXsoyOU2cyV4j3FWY&v=3.exp&libraries=geometry,drawing,places",
+//     loadingElement: <div style={{ height: `100%` }} />,
+//     containerElement: <div style={{ height: `100%` }} />,
+//     mapElement: <div style={{ height: `100%` }} />,
+//   }),
+//   withHandlers({
+//     onMarkerClustererClick: () => (markerClusterer) => {
+//       const clickedMarkers = markerClusterer.getMarkers();
+//       console.log(`Current clicked markers length: ${clickedMarkers.length}`);
+//       console.log(clickedMarkers);
+//     },
+//   }),
+//   withStateHandlers(() => ({
+//     isOpen: false,
+//   }), {
+//     onToggleOpen: ({ isOpen }) => () => ({
+//       isOpen: !isOpen,
+//     })
+//   }),
+//   withScriptjs,
+//   withGoogleMap
+// )(props =>
+//   <GoogleMap
+//     onBoundsChanged={ () => {
+//       // const myMap = document.getElementById('map');
+//       // console.log("--- bounds ref:" + this.myMap.get_methods());
+//       var bar
+//       for (bar in this.myMap)
+//       {
+//           console.log("Map has property " + bar);
+//       }
+//       for (var i=0; i<props.incident_data.length; i++){
+//           // if( this.myMap.contains({lat: props.incident_data[i].lat, lng: props.incident_data[i].long} )) {
+//           //   console.log("--- IN bounds")
+//           // }
+//       }
+//     }}
+//     defaultZoom={7}
+//     defaultCenter={{ lat: -37.643, lng: 144.928 }}
+//     // ref="myMap"
+//   >
+//     <MarkerClusterer
+//       onClick={props.onMarkerClustererClick}
+//       averageCenter
+//       enableRetinaIcons
+//       gridSize={30}
+//     >
+//       {props.incident_data.map(marker => (
+//         <MapMarker marker_data={marker} />
+//       ))}
+//     </MarkerClusterer>
+//   </GoogleMap>
+// );
 
 class App extends Component {
   constructor() {
@@ -110,24 +110,20 @@ class App extends Component {
   };
 
   render() {
-    const { displayWidth } = this.state;
-    const { incident_data } = this.state;
-    const { display_list } = this.state;
-    const mobile = (displayWidth <= 500);
+    const mobile = (this.state.displayWidth <= 500);
 
-    if(mobile && !display_list) {
+    if(mobile && !this.state.display_list) {
       return (
         <div className="App">
           <PageHeader />
           <Flex className="Mobile" p={2}>
             <Box className="Map" vertical-align="center" px={2} w={3/3}>
-                <MapWithAMarkerClusterer incident_data={incident_data} />
               <MenuButton />
             </Box>
           </Flex>
         </div>
       );
-    } else if(mobile && display_list) {
+    } else if(mobile && this.state.display_list) {
         return (
           <div className="App">
           <PageHeader />
@@ -146,7 +142,6 @@ class App extends Component {
                 <button className="ListButton" onClick={this.ListButtonClicked} ><FaMenu size={30} /></button>
               </Box>
               <Box className="Map" vertical-align="center" px={2} w={1/3}>
-                  <MapWithAMarkerClusterer incident_data={incident_data} />
               </Box>
 
             </Flex>
@@ -168,7 +163,7 @@ class App extends Component {
               </ul>
             </Box>
             <Box className="Map" px={2} w={2/3}>
-                <MapWithAMarkerClusterer incident_data={incident_data} />
+                <ClusterMap incident_data={this.state.incident_data} />
             </Box>
           </Flex>
         </div>

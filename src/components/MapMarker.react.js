@@ -7,19 +7,17 @@ const {
 class MapMarker extends React.Component {
   constructor(props) {
     super(props);
+    console.log("--- MARKER init");
     this.state = {display_popup: false, marker_data: props.marker_data};
-    console.log("--- Marker construct");
   }
 
   onClickMarker = () => {
-    console.log("--- Marker state change: " + this.state.display_popup);
     this.setState((prevState, props) => ({
       display_popup: (!prevState.display_popup)
     }));
   }
 
   render() {
-    console.log("--- Marker render");
     if (this.state.display_popup) {
       return (
         <Marker
