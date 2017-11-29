@@ -26,7 +26,6 @@ class App extends Component {
   }
 
   tick() {
-    console.log("tick");
     const th = this;
     const request = new XMLHttpRequest();
     request.responseType = "text";
@@ -49,8 +48,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    console.log("MOUNT this")
-    console.log(this)
     this.forceUpdate();
     this.updateTimer = setInterval(
       () => this.tick(),

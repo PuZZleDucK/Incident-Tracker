@@ -25,6 +25,7 @@ class MenuButton extends React.Component {
         <div className="FloatingList">
           <IncidentList mapped_incident_data={this.state.mapped_incident_data} />
           <button className="ListButtonClose" onClick={this.ListButtonClicked} ><FaClose size={30} /></button>
+          <button className="ListCounter" onClick={this.ListButtonClicked} >{this.state.mapped_incident_data.length}</button>
         </div>
       );
     } else {

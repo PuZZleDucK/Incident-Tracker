@@ -9,7 +9,6 @@ class IncidentList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("--- list change");
     this.setState({ mapped_incident_data: nextProps.mapped_incident_data });
   }
 

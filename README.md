@@ -3,8 +3,6 @@
 
 Displays traffic and roadwork incident data on a dynamic map.
 
-Unfortunately my submission is far from 100% complete with a few issues still remaining regarding the information popups and the incident list not being filtered by visibility on the map. I have only been able to spend a couple of days on the project and intend to complete the last couple of features over the next few days. I have not used React before this project and the learning curve was as steep as I'd heard. Unfortunately this unfamiliarity has resulted in some confusion in the state handling logic and resulted in the issues mentioned above.
-
 ### The Design
 
 I started my project with a few sketches of how I wanted the page to look:
@@ -13,12 +11,13 @@ I started my project with a few sketches of how I wanted the page to look:
 ### The Technology
 
 - Uses the React JS library with a responsive layout
-- I've utilised GitHub Pages for hosting and Travis.org or remote builds and sutomated deployments.
-- No storage requirements... so no back end was required
+- I had not used React before this project and the learning curve was as steep as I'd heard it would be!
+- I've utilized GitHub Pages for hosting and Travis.org or remote builds and automated deployments.
+- No data to store... so no back end required
 - Jasmine & Karma were the testing frameworks but few tests have been written so far
 - Google Maps API and react-google-maps were used for the mapping components
-- Many components were extracted into their own moduls
-- Cross origin hacks courtisy of https://crossorigin.me and https://cors-anywhere
+- Most components were extracted into their own modules
+- Cross origin hacks courtesy of https://crossorigin.me and https://cors-anywhere
 
 - Source: https://github.com/PuZZleDucK/Incident-Tracker.git
 - Deployment: https://puzzleduck.github.io/Incident-Tracker/
@@ -41,12 +40,16 @@ Below is information and notes I've used to drive development of the project and
 
 ### Notes
 
+- The button-with-embedded-list turned into a fun component where the button held (and hid) an instance of the list component
+- Live data is polled about every minute and a half (data is updated more frequently, but I didn't want to spam vic roads :p)
+- A small part of the Google Maps component is still a stateless component. This makes using the embedded functions (like getBounds) rather tricky and is not very 'reacty'.
+- Unfortunately the way the bounds checking is currently performed the list and counter will only update when the user moves the viewport, related to the stateless map component
+- I'm starting to rely on the assumption that the incident id is unique... so far so good
 - Known values for incident_type: tow_allocation, alert, emergency, roadworks and event (may be open ended?)
-- I'm starting to rely on the assumption that the incident id is unique
 
 ### The Plan
 
-- [x] Analyse problem description
+- [x] Analyze problem description
 - [x] Document approach
 - [x] Review wave digital source code
 - [x] Add contrib/license/coc/contact-wiki/templates
@@ -56,18 +59,19 @@ Below is information and notes I've used to drive development of the project and
 - [x] Prototype layouts
 - [x] Input/Parse data
 - [x] Display markers
-- [x] Display popoup data
+- [x] Display popup data
 - [x] mobile list toggle
 - [x] limit list to currently visible
 - [x] Display counter on list button
 - [x] Display live data (check "last_modified" in json)
-- [x] Make popups independant (make property a hash lookup on marker key)
+- [x] Make popups independent
 - [x] Cleanup packages
 - [x] ssl (optional)
+- [ ] tests
 - [ ] live user location (compass mode)
 - [x] Cluster map (optional)
 - [ ] Blog
-- [ ] Review submission
+- [x] Review submission
 
 
 ### The Specification
@@ -76,7 +80,7 @@ Below is information and notes I've used to drive development of the project and
 - [x] simple browser based interface required to display incident locations and information each about each incident.
 - [x] incidents are published in a JSON feed which contains data about the incident type, description, location details etc.
 - [x] live data
-- [x] usually contains 300-400 items.(maximum number of items your solution needs to support). - 456 ok
+- [x] usually contains 300-400 items.(maximum number of items your solution needs to support). - over 500 seen - ok
 
 - [x] https://victraffic-api.wd.com.au/api/v3/incidents
 - [x] Build a small single page JS application that has the following features:
@@ -118,7 +122,7 @@ Notes taken reviewing Wave Digital GitHub repos/blog
 - Ruby
 - REST
 - branch push style
-- immersive
+- immersive experiences
 - autogen docs
 - isolated components (core/data/map/demo)
 - open layers and turf
