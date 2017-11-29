@@ -14,15 +14,9 @@ class App extends Component {
   };
 
   updateDisplayedList(data, th) {
-    console.log("!!! UPDATE START");
-    console.log(this);
-    console.log(th);
-    console.log(data);
-    // console.log(e);
     this.setState({
       displayed_incident_data: data
     });
-    console.log("!!! UPDATE END");
   }
 
   componentWillMount() {
@@ -33,15 +27,13 @@ class App extends Component {
     request.open("GET", "https://cors-anywhere.herokuapp.com/https://victraffic-api.wd.com.au/api/v3/incidents", true);
     request.onload = function() {
       const responseText = request.responseText;
-      console.log("--- response");
       th.setState({
         incident_data: JSON.parse(responseText).incidents
       });
     };
 
     request.onerror = function() {
-      console.log("--- error");
-      console.log("There was an error!");
+      console.log(" --- There was an error fetching data! ---");
     };
     request.send();
   };
@@ -54,14 +46,8 @@ class App extends Component {
     this.setState({ displayWidth: window.innerWidth });
   };
 
-  ListButtonClicked = () => {
-    this.setState((prevState, props) => ({
-      display_list: (!prevState.display_list)
-    }));
-  };
-
   render() {
-    const mobile = (this.state.displayWidth <= 500);
+    const mobile = (this.state.displayWidth < 600);
 
     if(mobile) {
       return (
@@ -70,7 +56,7 @@ class App extends Component {
           <Flex className="Mobile" p={2}>
             <Box className="Map" vertical-align="center" px={2} w={3/3}>
               <ClusterMap incident_data={this.state.incident_data} updateDisplayedList={this.updateDisplayedList} />
-              <MenuButton mapped_incident_data={this.state.incident_data} />
+              <MenuButton mapped_incident_data={this.state.displayed_incident_data} />
             </Box>
           </Flex>
         </div>

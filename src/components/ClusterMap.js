@@ -39,12 +39,9 @@ const MapWithCluster = compose(
                 this.props.incident_data[i].lat < max_lat &&
                 this.props.incident_data[i].long > min_long &&
                 this.props.incident_data[i].long < max_long ) {
-                  console.log("--- IN bounds")
                   this.markers_on_screen.push(this.props.incident_data[i])
             }
           }
-          console.log("this at markers_on_screen updateDisplayedList");
-          console.log(this.props);
           this.setState({
             bounds: refs.map.getBounds(),
             center: refs.map.getCenter(),
@@ -85,13 +82,7 @@ class ClusterMap extends React.Component {
     this.setState({ markers_on_screen: nextProps.markers_on_screen });
   }
 
-  componentWillMount() {
-    console.log("will mount cluster map")
-  }
-
   render() {
-    // console.log(this)
-    // this.props.updateDisplayedList(this.state.markers_on_screen);
     return(
       <MapWithCluster incident_data={this.state.incident_data} updateDisplayedList={this.props.updateDisplayedList} />
     );
