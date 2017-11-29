@@ -17,7 +17,7 @@ class IncidentList extends React.Component {
     return (
           <ul>
             <li><h2>Current Incidents:</h2></li>
-              {this.state.mapped_incident_data.map(function(incident) {
+              {this.state.mapped_incident_data && this.state.mapped_incident_data.map(function(incident) {
                 return (
                   <ListEntry title={incident.title} type={incident.alert_type} key={incident.id} />
                 );

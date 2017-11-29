@@ -12,8 +12,9 @@ const MapWithCluster = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
+    containerElement: <div style={{ height: `100%` }} />,
     mapElement: <div style={{ height: `100%` }} />,
+    th: this,
   }),
   lifecycle({
     componentWillMount() {
@@ -21,20 +22,35 @@ const MapWithCluster = compose(
 
       this.setState({
         bounds: null,
+        center: { lat: -37.643, lng: 144.928 },
+        markers_on_screen: [],
         markers: [],
         onMapMounted: ref => {
           refs.map = ref;
         },
         onBoundsChanged: () => {
-          console.log("getBounds()");
-          console.log(refs.map.getBounds());
-          //       for (var i=0; i<this.state.incident_data.length; i++){
-          //           // if( contains({lat: this.state.incident_data[i].lat, lng: this.state.incident_data[i].long} )) {
-          //           //   console.log("--- IN bounds")
-          //           // }
+          this.markers_on_screen = [];
+          const min_long = refs.map.getBounds()['b']['b'];
+          const min_lat = refs.map.getBounds()['f']['b'];
+          const max_long = refs.map.getBounds()['b']['f'];
+          const max_lat = refs.map.getBounds()['f']['f'];
+          for (var i=0; i<this.props.incident_data.length; i++){
+            if( this.props.incident_data[i].lat > min_lat &&
+                this.props.incident_data[i].lat < max_lat &&
+                this.props.incident_data[i].long > min_long &&
+                this.props.incident_data[i].long < max_long ) {
+                  console.log("--- IN bounds")
+                  this.markers_on_screen.push(this.props.incident_data[i])
+            }
+          }
+          console.log("this at markers_on_screen updateDisplayedList");
+          console.log(this.props);
           this.setState({
             bounds: refs.map.getBounds(),
+            center: refs.map.getCenter(),
+            markers_on_screen: this.markers_on_screen,
           })
+          this.props.updateDisplayedList(this.markers_on_screen, this.props.th);
         },
       })
     },
@@ -44,9 +60,10 @@ const MapWithCluster = compose(
 )(props =>
   <GoogleMap
     ref={props.onMapMounted}
-    defaultZoom={9}
-    center={{ lat: -37.643, lng: 144.928 }}
+    defaultZoom={12}
+    center={props.center}
     onBoundsChanged={props.onBoundsChanged}
+    updateDisplayedList={props.updateDisplayedList}
   >
     {props.markers.map((marker, index) =>
       <Marker key={index} position={marker.position} />
@@ -59,17 +76,24 @@ const MapWithCluster = compose(
 class ClusterMap extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {incident_data: props.incident_data};
+    this.state = {incident_data: props.incident_data, updateDisplayedList: props.updateDisplayedList, markers_on_screen: []};
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ incident_data: nextProps.incident_data });
+    this.setState({ markers_on_screen: nextProps.markers_on_screen });
+  }
+
+  componentWillMount() {
+    console.log("will mount cluster map")
   }
 
   render() {
+    // console.log(this)
+    // this.props.updateDisplayedList(this.state.markers_on_screen);
     return(
-      <MapWithCluster incident_data={this.state.incident_data} />
+      <MapWithCluster incident_data={this.state.incident_data} updateDisplayedList={this.props.updateDisplayedList} />
     );
   };
 };

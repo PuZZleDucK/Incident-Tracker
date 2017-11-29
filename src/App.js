@@ -10,14 +10,19 @@ class App extends Component {
   constructor() {
     super();
     this.state = { displayWidth: window.innerWidth, incident_data: [], displayed_incident_data: [], display_list: false };
+    this.updateDisplayedList = this.updateDisplayedList.bind(this);
   };
 
-  updateDisplayedList(e) {
-    // this.setState({
-    //   displayed_incident_data: e
-    // });
-    console.log("!!! UPDATE");
-    console.log(e);
+  updateDisplayedList(data, th) {
+    console.log("!!! UPDATE START");
+    console.log(this);
+    console.log(th);
+    console.log(data);
+    // console.log(e);
+    this.setState({
+      displayed_incident_data: data
+    });
+    console.log("!!! UPDATE END");
   }
 
   componentWillMount() {
@@ -76,10 +81,10 @@ class App extends Component {
           <PageHeader />
           <Flex className="Desktop" p={2}>
           <Box className="List" px={2} w={1/3}>
-              <IncidentList mapped_incident_data={this.state.incident_data} />
+              <IncidentList mapped_incident_data={this.state.displayed_incident_data} />
             </Box>
             <Box className="Map" px={2} w={2/3}>
-                <ClusterMap incident_data={this.state.incident_data} />
+                <ClusterMap incident_data={this.state.incident_data} updateDisplayedList={this.updateDisplayedList} />
             </Box>
           </Flex>
         </div>

@@ -5,23 +5,15 @@ const { MarkerClusterer } = require("react-google-maps/lib/components/addons/Mar
 class ClusterGroup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {incident_data: props.incident_data};
+    this.state = {incident_data: props.incident_data, updateDisplayedList: props.updateDisplayedList};
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("--- group props change");
-    console.log(nextProps);
     this.setState({ incident_data: nextProps.incident_data });
   }
 
-  onMarkerClustererClick(markerClusterer) {
-    // const clickedMarkers = markerClusterer.getMarkers();
-  }
-
   render() {
-    console.log("--- GROUP render data");
-    console.log(this);
     return (
       <MarkerClusterer
         onClick={this.onMarkerClustererClick}
