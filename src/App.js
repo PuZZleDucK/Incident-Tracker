@@ -19,6 +19,13 @@ class App extends Component {
     });
   }
 
+  tick() {
+    console.log("tick");
+    // this.setState({
+    //   date: new Date()
+    // });
+  }
+
   componentWillMount() {
     window.addEventListener("resize", this.handleWindowSizeChange);
     const th = this;
@@ -38,8 +45,16 @@ class App extends Component {
     request.send();
   };
 
+  componentDidMount() {
+    this.updateTimer = setInterval(
+      () => this.tick(),
+      10000
+    );
+  }
+
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleWindowSizeChange);
+    clearInterval(this.updateTimer);
   };
 
   handleWindowSizeChange = () => {

@@ -29,7 +29,10 @@ class MenuButton extends React.Component {
       );
     } else {
       return (
-        <button className="ListButton" onClick={this.ListButtonClicked} ><FaMenu size={30} /></button>
+        <div className="FloatingButton">
+          <button className="ListButton" onClick={this.ListButtonClicked} ><FaMenu size={30} /></button>
+          <button className="ListCounter" onClick={this.ListButtonClicked} >{this.state.mapped_incident_data.length}</button>
+        </div>
       );
     }
   };

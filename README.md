@@ -58,7 +58,8 @@ Below is information and notes I've used to drive development of the project and
 - [x] Display markers
 - [x] Display popoup data
 - [x] mobile list toggle
-- [ ] limit list to currently visible
+- [x] limit list to currently visible
+- [x] Display counter on list button
 - [ ] Display live data (check "last_modified" in json)
 - [x] Make popups independant (make property a hash lookup on marker key)
 - [x] Cleanup packages
@@ -89,14 +90,14 @@ Below is information and notes I've used to drive development of the project and
 - [x] This information should be presented in a pop-up element that can be dismissed
 
 - [x] Displays incidents in a list
-- [ ] As the user pans and zooms the map interface the incident list needs to be updated to show only the incidents currently visible on the map
+- [x] As the user pans and zooms the map interface the incident list needs to be updated to show only the incidents currently visible on the map
 - [x] Each list element needs to display the alert_type and title of the incident.
 
-- [ ] UI Requirements
+- [x] UI Requirements
 - [x] implement a responsive layout to support both desktop and mobile devices.
 - [x] When in desktop mode the list and map should be both on-screen
 - [x] When in mobile mode the map should be on-screen and the list is accessible by a button or similar element.
-- [ ] When in mobile mode the button to access the list should display the number of list elements in the button label
+- [x] When in mobile mode the button to access the list should display the number of list elements in the button label
 
 - [x] We require the application code and any build instructions
 - [x] There are no time limits on the test
