@@ -11,7 +11,13 @@ class App extends Component {
     super();
     this.state = { displayWidth: window.innerWidth, incident_data: [], displayed_incident_data: [], display_list: false };
     this.updateDisplayedList = this.updateDisplayedList.bind(this);
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
   };
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ incident_data: nextProps.incident_data });
+    this.setState({ markers_on_screen: nextProps.markers_on_screen });
+  }
 
   updateDisplayedList(data, th) {
     this.setState({
@@ -21,16 +27,9 @@ class App extends Component {
 
   tick() {
     console.log("tick");
-    // this.setState({
-    //   date: new Date()
-    // });
-  }
-
-  componentWillMount() {
-    window.addEventListener("resize", this.handleWindowSizeChange);
     const th = this;
     const request = new XMLHttpRequest();
-    request.responseType = "text/plain";
+    request.responseType = "text";
     request.open("GET", "https://cors-anywhere.herokuapp.com/https://victraffic-api.wd.com.au/api/v3/incidents", true);
     request.onload = function() {
       const responseText = request.responseText;
@@ -43,12 +42,19 @@ class App extends Component {
       console.log(" --- There was an error fetching data! ---");
     };
     request.send();
+  }
+
+  componentWillMount() {
+    window.addEventListener("resize", this.handleWindowSizeChange);
   };
 
   componentDidMount() {
+    console.log("MOUNT this")
+    console.log(this)
+    this.forceUpdate();
     this.updateTimer = setInterval(
       () => this.tick(),
-      10000
+      100000
     );
   }
 

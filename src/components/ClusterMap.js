@@ -19,7 +19,6 @@ const MapWithCluster = compose(
   lifecycle({
     componentWillMount() {
       const refs = {}
-
       this.setState({
         bounds: null,
         center: { lat: -37.643, lng: 144.928 },

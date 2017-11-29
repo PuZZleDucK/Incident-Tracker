@@ -60,7 +60,7 @@ Below is information and notes I've used to drive development of the project and
 - [x] mobile list toggle
 - [x] limit list to currently visible
 - [x] Display counter on list button
-- [ ] Display live data (check "last_modified" in json)
+- [x] Display live data (check "last_modified" in json)
 - [x] Make popups independant (make property a hash lookup on marker key)
 - [x] Cleanup packages
 - [x] ssl (optional)
@@ -75,7 +75,7 @@ Below is information and notes I've used to drive development of the project and
 - [x] local traffic authority needs a solution to display traffic incidents on a map.
 - [x] simple browser based interface required to display incident locations and information each about each incident.
 - [x] incidents are published in a JSON feed which contains data about the incident type, description, location details etc.
-- [ ] live data
+- [x] live data
 - [x] usually contains 300-400 items.(maximum number of items your solution needs to support). - 456 ok
 
 - [x] https://victraffic-api.wd.com.au/api/v3/incidents
