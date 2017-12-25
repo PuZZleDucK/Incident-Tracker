@@ -1,0 +1,19 @@
+{
+  "short_name": "Incident Tracker",
+  "name": "Incident Tracker for Wave Digital",
+  "description": "Displays incidents from victraffic-api",
+  "repository": "https://github.com/PuZZleDucK/Incident-Tracker",
+  "license": "MIT",
+  "README": "README.md",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "16x16 32x32 48x48 144x144",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
